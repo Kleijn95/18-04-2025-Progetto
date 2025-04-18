@@ -29,8 +29,8 @@ public class DipendenteController {
 
 
     @GetMapping
-    public Page<DipendenteResponse> findAll(@ParameterObject Pageable pageable){
-        return dipendenteService.findAll(pageable);
+    public Page<DipendenteResponse> findAll(@ParameterObject Pageable pageable){                // potrei aggiungere sortById cosi anche dopo
+        return dipendenteService.findAll(pageable);                                            // una modifica non va alla fine, o almeno credo.
 
     }
 
