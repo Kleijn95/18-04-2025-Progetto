@@ -72,13 +72,12 @@ public class PrenotazioneService {
 
     // create
     public CommonResponse create(@Valid PrenotazioneRequest request) {
-        boolean exists = prenotazioneRepository.existsByDipendenteIdAndViaggioIdAndDataRichiesta(
+        if (prenotazioneRepository.existsByDipendenteIdAndDataRichiesta(
                 request.getDipendenteId(),
-                request.getViaggioId(),
-                request.getDataRichiesta());
-        if (exists) {
-            throw new IllegalStateException("Prenotazione già esistente per questo dipendente, viaggio e data richiesta");
+                request.getDataRichiesta())) {
+            throw new IllegalStateException("Il dipendente ha già una prenotazione in questa data.");
         }
+
 
 
         Prenotazione prenotazione = new Prenotazione();
